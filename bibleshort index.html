@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Bible Story</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        #video-container {
+            position: relative;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+        }
+
+        .choice-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .choice-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .choice-button:hover {
+            background-color: #0056b3;
+        }
+
+        #reset-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #FF5733;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #reset-button:hover {
+            background-color: #C70039;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Bible Story: The Good Samaritan</h1>
+
+    <div id="video-container">
+        <video id="story-video" controls>
+            <source id="video-source" src="scene1.mp4" type="video/mp4">
+            Your browser does not support the video tag. Please update your browser or try another device.
+        </video>
+    </div>
+
+    <div id="choices" class="choice-buttons" style="display: none;">
+        <button
