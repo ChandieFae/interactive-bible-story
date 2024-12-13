@@ -1,7 +1,7 @@
 # Interactive Bible Story: The Good Samaritan
 
 ## Overview
-This project is a privately developed, interactive, choice-driven story designed for children, based on the Bible's parable of the Good Samaritan. It uses engaging visuals and decision-based navigation to teach valuable lessons about kindness and compassion.
+This project is a privately developed, interactive, choice-driven story designed for children, based on the Bible. This is the parable of the Good Samaritan. It uses engaging visuals and decision-based navigation to teach valuable lessons about kindness and compassion.
 
 ---
 
