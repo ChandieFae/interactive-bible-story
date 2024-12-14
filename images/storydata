@@ -1,8 +1,184 @@
-const storyData = {
-    intro: { image: "images/intro.jpg.webp" },
-    robbers: { image: "images/robbers.jpg.webp" },
-    inn: { image: "images/inn.jpg.webp" },
-    escape: { image: "images/escape.jpg.webp" },
-    samaritan: { image: "images/samaritan.jpg.webp" },
-    end: { image: "images/end.jpg.webp" }
-};
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Bible Story: The Good Samaritan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+        }
+        main {
+            padding: 20px;
+        }
+        .story-container {
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+            border: 1px solid #ddd;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+        }
+        .story-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+        .choices {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .choice-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .choice-button:hover {
+            background-color: #45a049;
+        }
+        footer {
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interactive Bible Story: The Good Samaritan</h1>
+    </header>
+    <main>
+        <div id="story" class="story-container">
+            <img id="story-image" class="story-image" src="" alt="" style="display: none;">
+            <h2 id="story-title">Welcome</h2>
+            <p id="story-text">Welcome to the interactive story of the Good Samaritan. Click "Start" to begin your journey.</p>
+            <div id="choices" class="choices">
+                <button class="choice-button" onclick="startStory()">Start</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Interactive Bible Story. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const storyData = {
+            intro: {
+                title: "The Traveler’s Journey",
+                text: "A traveler sets out on a journey from Jerusalem to Jericho. The path is long and dangerous. What will he do?",
+                image: "images/intro.jpg.webp",
+                choices: [
+                    { text: "Continue the journey bravely", next: "choice1" },
+                    { text: "Stop to rest and prepare", next: "choice2" }
+                ]
+            },
+            choice1: {
+                title: "The Encounter",
+                text: "The traveler ventures on, but danger lurks ahead. Robbers appear on the road! What should he do?",
+                image: "images/robbers.jpg.webp",
+                choices: [
+                    { text: "Run for safety", next: "choice3" },
+                    { text: "Confront the robbers", next: "choice4" }
+                ]
+            },
+            choice2: {
+                title: "The Wise Advice",
+                text: "At a small inn, the traveler meets a wise elder who shares valuable advice: 'The road ahead is treacherous, but kindness will guide you.'",
+                image: "images/inn.jpg.webp",
+                choices: [
+                    { text: "Take the elder’s advice to heart", next: "choice5" },
+                    { text: "Dismiss the warning and continue", next: "choice1" }
+                ]
+            },
+            choice3: {
+                title: "Safe Escape",
+                text: "The traveler runs and hides, escaping the danger but losing precious time.",
+                image: "images/escape.jpg.webp",
+                choices: [
+                    { text: "Find help", next: "choice5" },
+                    { text: "Continue alone", next: "choice1" }
+                ]
+            },
+            choice4: {
+                title: "A Brave Confrontation",
+                text: "The traveler confronts the robbers but is overpowered. A Samaritan later finds and helps him.",
+                image: "images/samaritan.jpg.webp",
+                choices: [
+                    { text: "Thank the Samaritan", next: "end" },
+                    { text: "Reflect on kindness", next: "end" }
+                ]
+            },
+            choice5: {
+                title: "Wise Choices",
+                text: "With the elder's guidance, the traveler avoids danger and completes the journey safely.",
+                image: "images/guidance.jpg.webp",
+                choices: [
+                    { text: "Celebrate the journey", next: "end" },
+                    { text: "Share the story", next: "end" }
+                ]
+            },
+            end: {
+                title: "The End",
+                text: "You have completed the story! The traveler’s journey teaches us about courage, wisdom, and kindness. Would you like to replay the story or end here?",
+                image: "images/end.jpg.webp",
+                choices: [
+                    { text: "Replay the Story", next: "intro" },
+                    { text: "End the Story", next: "endScreen" }
+                ]
+            },
+            endScreen: {
+                title: "Thank You",
+                text: "Thank you for exploring the story of the Good Samaritan. We hope you enjoyed this interactive journey!",
+                image: "images/thankyou.jpg.webp",
+                choices: []
+            }
+        };
+
+        function renderStory(scene) {
+            const storyTitle = document.getElementById("story-title");
+            const storyText = document.getElementById("story-text");
+            const storyImage = document.getElementById("story-image");
+            const choicesContainer = document.getElementById("choices");
+
+            const currentScene = storyData[scene];
+            storyTitle.textContent = currentScene.title;
+            storyText.textContent = currentScene.text;
+
+            if (currentScene.image) {
+                storyImage.src = currentScene.image;
+                storyImage.style.display = "block";
+            } else {
+                storyImage.style.display = "none";
+            }
+
+            choicesContainer.innerHTML = "";
+            currentScene.choices.forEach(choice => {
+                const button = document.createElement("button");
+                button.textContent = choice.text;
+                button.className = "choice-button";
+                button.onclick = () => renderStory(choice.next);
+                choicesContainer.appendChild(button);
+            });
+        }
+
+        function startStory() {
+            renderStory("intro");
+        }
+    </script>
+</body>
+</html>
