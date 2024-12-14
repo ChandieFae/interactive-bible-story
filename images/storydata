@@ -1,0 +1,8 @@
+const storyData = {
+    intro: { image: "images/intro.jpg.webp" },
+    robbers: { image: "images/robbers.jpg.webp" },
+    inn: { image: "images/inn.jpg.webp" },
+    escape: { image: "images/escape.jpg.webp" },
+    samaritan: { image: "images/samaritan.jpg.webp" },
+    end: { image: "images/end.jpg.webp" }
+};
